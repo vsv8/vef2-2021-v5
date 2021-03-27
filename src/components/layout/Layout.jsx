@@ -1,12 +1,13 @@
-
+import React from 'react';
+import Helmet from 'react-helmet';
 // TODO sækja Sass
 //eslint-disable-next-line
-export function Layout({ /* todo senda inn efni */ children }) {
+export function Layout({ children }) {
   // TODO setja upp layout fyrir vef
   return (
     <div>
       <header>
-        <title>Fréttir</title>
+        <Helmet title="Fréttir" />
       </header>
       <main>
         {children}
