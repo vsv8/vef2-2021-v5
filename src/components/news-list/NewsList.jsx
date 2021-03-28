@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { NotFound } from '../../pages/NotFound';
 
 import { News } from "../news/News";
 
@@ -39,6 +40,12 @@ export function NewsList() {
   if (loading) {
     return (
       <p>Sæki gögn...</p>
+    );
+  }
+
+  if (!data) {
+    return (
+      <NotFound />
     );
   }
   
