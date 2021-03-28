@@ -4,7 +4,6 @@ import { Link } from 'react-router-dom';
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export function News({ category, partial }) {
-  // TODO sækja fréttir fyrir flokk
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(false);
@@ -33,17 +32,19 @@ export function News({ category, partial }) {
   }, [category]);
 
   if (error) {
-    return <p>Villa kom upp: {error}</p>
+    return (
+      <p>Villa kom upp: {error}</p>
+    );
   }
 
   if (loading) {
-    return <p>Sæki gögn...</p>
+    return (
+      <p>Sæki gögn...</p>
+    );
   }
 
   if (data) {
     let news = data.items;
-
-    console.log(news);
     const route = partial ? `/${category}` : '/';
 
     if (partial) {
@@ -51,20 +52,24 @@ export function News({ category, partial }) {
     }
 
     return (
-      <div>
+      <div class={partial ? "news__category__frontpage" : "news__category"}>
         <h3>{data.title}</h3>
-        {news.map((n) => {
-          return (
-            <li>
-              <a href={n.link}>{n.title}</a>
-            </li>);
-        })}
-        <Link to={route} >
+        <div>
+          {news.map((n) => {
+            return (
+              <li class="news__item">
+                <a href={n.link}>{n.title}</a>
+              </li>);
+          })}
+        </div>
+        <Link to={route} class="news__category__link">
           {partial ? "Allar fréttir" : "Til baka"}
         </Link>
       </div>
     )
   }
 
-  return <p>Villa kom upp: Gat ekki sótt fréttir.</p>
+  return (
+    <p>Villa kom upp: Gat ekki sótt fréttir.</p>
+  );
 }

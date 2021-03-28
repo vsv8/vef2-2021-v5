@@ -5,13 +5,9 @@ import { News } from "../news/News";
 const apiUrl = process.env.REACT_APP_API_URL;
 
 export function NewsList() {
-  // TODO sækja yfirlit fréttaflokka
-
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [data, setData] = useState(false);
-
-  console.log("hl");
 
   useEffect(() => {
     console.log("useEffect");
@@ -21,14 +17,6 @@ export function NewsList() {
       let result;
       try {
         result = await fetch(apiUrl);
-        
-        if (!result.ok) {
-          // if (result.status === 404) {
-          //   setError("404: Page Not Found");
-          //   return;
-          // }
-          throw new Error("Villa að ná í gögn");
-        }
         result = await result.json();
       } catch (e) {
         setError('Villa við að sækja gögn');
@@ -49,14 +37,15 @@ export function NewsList() {
   }
 
   if (loading) {
-    return <p>Sæki gögn...</p>;
+    return (
+      <p>Sæki gögn...</p>
+    );
   }
   
   const items = Array.from(data);
-  console.log(items);
 
   return (
-    <div>
+    <div class="news__container">
       {items.map((item) => { 
         return (
           <News category={item.id} partial={true} />
