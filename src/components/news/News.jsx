@@ -33,13 +33,17 @@ export function News({ category, partial }) {
 
   if (error) {
     return (
-      <p>Villa kom upp: {error}</p>
+      <div class="news__loading">
+        <p>Villa kom upp: {error}</p>
+      </div>
     );
   }
 
   if (loading) {
     return (
-      <p>Sæki gögn...</p>
+      <div class="news__loading">
+        <p>Sæki gögn...</p>
+      </div>
     );
   }
 
@@ -70,6 +74,8 @@ export function News({ category, partial }) {
   }
 
   return (
-    <p>Villa kom upp: Gat ekki sótt fréttir.</p>
+    <div class="news__loading">
+      <p>Villa kom upp: Gat ekki sótt fréttir.</p>
+    </div>
   );
 }

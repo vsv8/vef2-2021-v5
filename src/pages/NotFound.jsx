@@ -7,7 +7,7 @@ export function NotFound() {
     <React.Fragment>
       <Helmet title="404 Villa"/>
       <h1>Síða fannst ekki
-      <Link to="/">Til baka</Link>
+        <Link to="/">Til baka</Link>
       </h1>
     </React.Fragment>
   );
